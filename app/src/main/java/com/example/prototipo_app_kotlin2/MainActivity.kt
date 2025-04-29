@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.prototipo_app_kotlin2.Navegacion.RenderAppNav
-import com.example.prototipo_app_kotlin2.ui.theme.PrototipoAppkotlin2Theme
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -21,9 +20,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PrototipoAppkotlin2Theme {
+
                 RenderAppNav()
-            }
+
         }
     }
 }

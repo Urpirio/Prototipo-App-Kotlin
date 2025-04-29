@@ -48,13 +48,13 @@ public fun Login(navController: NavController){
         Column (
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black)
+                .background(Color.LightGray)
         ) {
             Row (//Header
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .background(Color.Black)
+                    .background(Color.LightGray)
                     .fillMaxWidth()
                     .fillMaxHeight(0.3f)
 

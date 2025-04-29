@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.prototipo_app_kotlin2.Navegacion.PathForRender
 
 
 @Composable
@@ -33,6 +35,7 @@ public fun FormLogin(navController: NavController){
 
     var textUserName by remember { mutableStateOf("") }
     var textPassword by remember { mutableStateOf("") }
+    var textPassAndUser = remember { mutableStateOf(false) }
 
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -60,7 +63,17 @@ public fun FormLogin(navController: NavController){
         Spacer(modifier = Modifier.height(10.dp))
         TextButton(
             onClick = {
-
+                for (Data in DataUser){
+                    if(Data.UserName == textUserName){
+                        if (Data.Password == textPassword){
+                            navController.navigate(route = PathForRender.Home.routes)
+                        }else{
+                            textPassAndUser.value = true
+                        }
+                    }else{
+                        textPassAndUser.value = true
+                    }
+                }
             },
             modifier = Modifier
                 .fillMaxWidth(0.9f)
@@ -73,6 +86,22 @@ public fun FormLogin(navController: NavController){
             Text("Login", style = TextStyle(
                 fontSize = 18.sp
             ))
+        }
+        if(textPassAndUser.value){
+            AlertDialog(
+                title = { Text("Credentials don't match") },
+                text = { Text("The password or username is likely incorrect.") },
+                onDismissRequest = {},
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            textPassAndUser.value = false
+                        }
+                    ) {
+                        Text("Okay")
+                    }
+                }
+            )
         }
     }
 }
