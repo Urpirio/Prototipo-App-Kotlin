@@ -12,12 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.BottomAppBar_Home
-import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.SearchHome
 import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.CardsHome1
 import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.DataCardHome
 import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.CardHome2
 import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.DataCardHome2
+import com.example.prototipo_app_kotlin2.ui.theme.ColorB
+import com.example.prototipo_app_kotlin2.ui.theme.ColorGray
+
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -25,22 +26,29 @@ import com.example.prototipo_app_kotlin2.Screms.ComponentsHome.DataCardHome2
 @Composable
 public fun Home(navController: NavController){
 
-    Scaffold (
-        topBar = {
-            SearchHome()
-        },
-        bottomBar = {
-            BottomAppBar_Home()
-        }
-    ) {
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 98.dp, bottom = 98.dp)
-                .verticalScroll(rememberScrollState())
+
+        Scaffold (
+            topBar = {
+                SearchHome()
+            },
+            bottomBar = {
+                BottomAppBar_Home(
+                    ColorBtn_NWhite = ColorGray,
+                    ColorBtn_NLighBlue = ColorB,
+                    TextL = "Home",
+                    navController = navController
+                )
+            }
         ) {
-            CardsHome1(ArrayData = DataCardHome)
-            CardHome2(ArrayData = DataCardHome2)
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 98.dp, bottom = 98.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                CardsHome1(ArrayData = DataCardHome)
+                CardHome2(ArrayData = DataCardHome2)
+            }
         }
-    }
+
 }
